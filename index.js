@@ -18,11 +18,11 @@ db.connect(function(err){
     mainMenu();
 })
 
-function mainMenu() {
-    updateDepartmentsLists();
-    updateRolesLists();
-    updateEmployeesLists();
-    inquirer
+  function mainMenu() {
+    // updateDepartmentsLists();
+    // updateRolesLists();
+    // updateEmployeesLists();
+     inquirer
         .prompt(
             {
                 type: 'list',
@@ -45,7 +45,6 @@ function mainMenu() {
             }
         )
         .then(answer => {
-            console.clear();
             switch(answer.choice){
                 case 'View all departments':
                     viewAllDepartments();
@@ -287,8 +286,8 @@ function mainMenu() {
                     })
                     break;
                 case 'Exit':
-                    db.destroy();
-                    process.exit(0);
+                   db.destroy();
+                   process.exit(0);
                 default:
                     mainMenu();
             }
@@ -530,7 +529,9 @@ function deleteEmployees(employeeDelete) {
     })
 }
 
+// ----------------------------UTILITY FUNCTIONS BELOW----------------------------------------
 
+// USED IN mainMenu switch statement to obtain data for use in addRole() function
 function updateDepartmentsLists() {
     const sql = `SELECT * FROM departments`;
 
@@ -547,7 +548,7 @@ function updateDepartmentsLists() {
         }
     })
 }
-
+// USED IN mainMenu switch statement to obtain data for use in addEmployee() function
 function updateRolesLists() {
     const sql = `SELECT * FROM roles`;
 
@@ -561,7 +562,7 @@ function updateRolesLists() {
         }
     })
 }
-
+// USED IN mainMenu switch statement to obtain data for use in addEmployee() function
 function updateEmployeesLists() {
     const sql = `SELECT * FROM employees`;
 
@@ -575,3 +576,4 @@ function updateEmployeesLists() {
         }
     })
 }
+
