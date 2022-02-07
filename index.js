@@ -530,3 +530,48 @@ function deleteEmployees(employeeDelete) {
     })
 }
 
+
+function updateDepartmentsLists() {
+    const sql = `SELECT * FROM departments`;
+
+    db.query(sql, (err, rows) => {
+        if (err) throw err;
+        departmentNameList.length = 0;
+        departmentIdList.length = 0;
+        for (let i = 0; i < rows.length; i++) {
+            let { id, name } = rows[i];
+            let actual_id = id;
+            let actual_name = name;
+            departmentNameList.push(actual_name);
+            departmentIdList.push(actual_id);
+        }
+    })
+}
+
+function updateRolesLists() {
+    const sql = `SELECT * FROM roles`;
+
+    db.query(sql, (err, rows) => {
+        if (err) throw err;
+        roleNameList.length = 0;
+        for (let i = 0; i < rows.length; i++) {
+            let { title } = rows[i];
+            let actual_role = title;
+            roleNameList.push(actual_role);
+        }
+    })
+}
+
+function updateEmployeesLists() {
+    const sql = `SELECT * FROM employees`;
+
+    db.query(sql, (err, rows) => {
+        if (err) throw err;
+        employeeNameList.length = 0;
+        for (let i = 0; i < rows.length; i++) {
+            let { first_name, last_name } = rows[i];
+            let actual_full_name = `${first_name} ${last_name}`;
+            employeeNameList.push(actual_full_name);
+        }
+    })
+}
